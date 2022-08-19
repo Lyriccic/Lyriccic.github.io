@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>复习001 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="有关super 调用父类中的方法，只会调用离自己最近的那个父类中的方法 调用父类构造器可以根据参数的不同调用父类中的不同构造器，前提是父类中有这样的构造器  有关多态包括方法的重载和覆写还有对象的多态性 对象的多态性子类的对象可以赋值给父类的变量 ，这样的变量依然是一个声明为超类的变量，他不能直接调用子类中的方法或者字段，如果一定要调用需要强制类型转换向下转型。但是不能将超类的引用赋值给子类的变量">
+<meta property="og:type" content="article">
+<meta property="og:title" content="复习001">
+<meta property="og:url" content="http://example.com/2022/08/20/%E5%A4%8D%E4%B9%A0001/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="有关super 调用父类中的方法，只会调用离自己最近的那个父类中的方法 调用父类构造器可以根据参数的不同调用父类中的不同构造器，前提是父类中有这样的构造器  有关多态包括方法的重载和覆写还有对象的多态性 对象的多态性子类的对象可以赋值给父类的变量 ，这样的变量依然是一个声明为超类的变量，他不能直接调用子类中的方法或者字段，如果一定要调用需要强制类型转换向下转型。但是不能将超类的引用赋值给子类的变量">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-19T16:31:21.816Z">
+<meta property="article:modified_time" content="2022-08-19T16:31:21.929Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-复习001" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/08/20/%E5%A4%8D%E4%B9%A0001/" class="article-date">
+  <time datetime="2022-08-19T16:31:21.816Z" itemprop="datePublished">2022-08-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      复习001
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="有关super"><a href="#有关super" class="headerlink" title="有关super"></a>有关super</h3><ol>
+<li>调用父类中的方法，只会调用离自己最近的那个父类中的方法</li>
+<li>调用父类构造器可以根据参数的不同调用父类中的不同构造器，前提是父类中有这样的构造器</li>
+</ol>
+<h3 id="有关多态"><a href="#有关多态" class="headerlink" title="有关多态"></a>有关多态</h3><p>包括方法的重载和覆写还有对象的多态性</p>
+<h4 id="对象的多态性"><a href="#对象的多态性" class="headerlink" title="对象的多态性"></a>对象的多态性</h4><p><strong>子类的对象可以赋值给父类的变量</strong> ，这样的变量依然是一个声明为超类的变量，他不能直接调用子类中的方法或者字段，如果一定要调用需要强制类型转换向下转型。但是<strong>不能将超类的引用赋值给子类的变量</strong> 。实际上就是向上转型和向下转型，其中子类对象赋值给父类变量是向上转型，程序会自动完成。向下转型是指把已经赋上了子类对象的父类变量用强制类型转换强制转换为子类变量并且赋值给子类变量</p>
+<p><code>Father father = new Son()</code>  //向上转型</p>
+<p><code>Son son = (Son) father</code>  //向下转型</p>
+<h3 id="有关final方法"><a href="#有关final方法" class="headerlink" title="有关final方法"></a>有关final方法</h3><p>一个方法被声明为final方法就不可以在子类中覆盖了  </p>
+<p><code>public final String say（return &quot;hello&quot;;）&#123;&#125;</code>  </p>
+<p>一个类如果被声明为final那么类中的方法就会自动变成final方法，但是类中的字段没有这样的要求</p>
+<p>方法和类声明为final的原因是有时候需要他们不会在子类中改变语义</p>
+<h3 id="有关访问权限"><a href="#有关访问权限" class="headerlink" title="有关访问权限"></a>有关访问权限</h3><ol>
+<li>public公开</li>
+<li>protected允许同一包和不同包的子类访问</li>
+<li>default允许同一包访问</li>
+<li>private私有只允许本类访问</li>
+</ol>
+<h3 id="有关object类"><a href="#有关object类" class="headerlink" title="有关object类"></a>有关object类</h3><h4 id="equals方法"><a href="#equals方法" class="headerlink" title="equals方法"></a>equals方法</h4><p>object类中的equals方法可以检验一个对象是否等于另外一个对象，就是比较两个对象的内存地址相不相同，但是有时候我们需要的不是比较内存地址是否相同，而是需要比较对象的各种信息是否相同（对象的状态）例如两个员工对象的姓名、薪水、入职时间、id等相同才人文他们是相同的，这时候我们需要自己定义equal方法（it is known to us all）</p>
+<h4 id="hashCode方法"><a href="#hashCode方法" class="headerlink" title="hashCode方法"></a>hashCode方法</h4><p>散列码（hash code）是对象导出的一个整型值，无规律，如果x和y是两个不同的对象，那么<code>x.hashCode()</code>和<code>y.hashCode()</code>不会相同  </p>
+<p>string的散列码是由内容导出的，因为string类中重写了equals方法和hashCode方法，因此两个字符串内容相同的话他们的散列码是相同的。但是一般的其他类型是散列码是由对象的存储地址导出的  </p>
+<p>如果重写了equals方法就必须重写hashCode方法（我不知道为什么，现在也不想知道)</p>
+<p>而且equals和hashCode返回的结果必须相同（java核心技术 卷I P180）</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/347342971">文章1</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/295017220">文章2</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/08/20/%E5%A4%8D%E4%B9%A0001/" data-id="cl70ovvik0000ncvi1kt7bnwg" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/08/19/Markdown%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MarkDown语法学习</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/08/20/%E5%A4%8D%E4%B9%A0001/">复习001</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/19/Markdown%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0/">MarkDown语法学习</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/18/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
