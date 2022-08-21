@@ -7,11 +7,15 @@
   
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="复习002toString方法只要对象与一个字符串通过操作符“+”连接起来，java编译器就会自动地调用toString方法来获得这个对象的字符串描述。println方法会自动调用toString方法，如果需要打印数组需要Arrays.toString方法，会打印出外形酷似python中列表的数组字符串 12int[] num &#x3D; &amp;#123;1,2,3,4,5,6&amp;#125;;String s">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="http://example.com/2022/08/20/%E5%A4%8D%E4%B9%A0002/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="复习002toString方法只要对象与一个字符串通过操作符“+”连接起来，java编译器就会自动地调用toString方法来获得这个对象的字符串描述。println方法会自动调用toString方法，如果需要打印数组需要Arrays.toString方法，会打印出外形酷似python中列表的数组字符串 12int[] num &#x3D; &amp;#123;1,2,3,4,5,6&amp;#125;;String s">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-20T07:51:10.463Z">
+<meta property="article:modified_time" content="2022-08-21T03:59:32.478Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -62,9 +66,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-复习002" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-复习002" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2022/08/20/%E5%A4%8D%E4%B9%A0002/" class="article-date">
   <time datetime="2022-08-20T07:51:10.463Z" itemprop="datePublished">2022-08-20</time>
@@ -173,226 +175,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-复习001" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2022/08/20/%E5%A4%8D%E4%B9%A0001/" class="article-date">
-  <time datetime="2022-08-19T16:31:21.816Z" itemprop="datePublished">2022-08-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/20/%E5%A4%8D%E4%B9%A0001/">复习001</a>
-    </h1>
+    <a href="/2022/08/20/%E5%A4%8D%E4%B9%A0001/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">复习001</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="有关super"><a href="#有关super" class="headerlink" title="有关super"></a>有关super</h3><ol>
-<li>调用父类中的方法，只会调用离自己最近的那个父类中的方法</li>
-<li>调用父类构造器可以根据参数的不同调用父类中的不同构造器，前提是父类中有这样的构造器</li>
-</ol>
-<h3 id="有关多态"><a href="#有关多态" class="headerlink" title="有关多态"></a>有关多态</h3><p>包括方法的重载和覆写还有对象的多态性</p>
-<h4 id="对象的多态性"><a href="#对象的多态性" class="headerlink" title="对象的多态性"></a>对象的多态性</h4><p><strong>子类的对象可以赋值给父类的变量</strong> ，这样的变量依然是一个声明为超类的变量，他不能直接调用子类中的方法或者字段，如果一定要调用需要强制类型转换向下转型。但是<strong>不能将超类的引用赋值给子类的变量</strong> 。实际上就是向上转型和向下转型，其中子类对象赋值给父类变量是向上转型，程序会自动完成。向下转型是指把已经赋上了子类对象的父类变量用强制类型转换强制转换为子类变量并且赋值给子类变量</p>
-<p><code>Father father = new Son()</code>  //向上转型</p>
-<p><code>Son son = (Son) father</code>  //向下转型</p>
-<h3 id="有关final方法"><a href="#有关final方法" class="headerlink" title="有关final方法"></a>有关final方法</h3><p>一个方法被声明为final方法就不可以在子类中覆盖了  </p>
-<p><code>public final String say（return &quot;hello&quot;;）&#123;&#125;</code>  </p>
-<p>一个类如果被声明为final那么类中的方法就会自动变成final方法，但是类中的字段没有这样的要求</p>
-<p>方法和类声明为final的原因是有时候需要他们不会在子类中改变语义</p>
-<h3 id="有关访问权限"><a href="#有关访问权限" class="headerlink" title="有关访问权限"></a>有关访问权限</h3><ol>
-<li>public公开</li>
-<li>protected允许同一包和不同包的子类访问</li>
-<li>default允许同一包访问</li>
-<li>private私有只允许本类访问</li>
-</ol>
-<h3 id="有关object类"><a href="#有关object类" class="headerlink" title="有关object类"></a>有关object类</h3><h4 id="equals方法"><a href="#equals方法" class="headerlink" title="equals方法"></a>equals方法</h4><p>object类中的equals方法可以检验一个对象是否等于另外一个对象，就是比较两个对象的内存地址相不相同，但是有时候我们需要的不是比较内存地址是否相同，而是需要比较对象的各种信息是否相同（对象的状态）例如两个员工对象的姓名、薪水、入职时间、id等相同才人文他们是相同的，这时候我们需要自己定义equal方法（it is known to us all）</p>
-<h4 id="hashCode方法"><a href="#hashCode方法" class="headerlink" title="hashCode方法"></a>hashCode方法</h4><p>散列码（hash code）是对象导出的一个整型值，无规律，如果x和y是两个不同的对象，那么<code>x.hashCode()</code>和<code>y.hashCode()</code>不会相同  </p>
-<p>string的散列码是由内容导出的，因为string类中重写了equals方法和hashCode方法，因此两个字符串内容相同的话他们的散列码是相同的。但是一般的其他类型是散列码是由对象的存储地址导出的  </p>
-<p>如果重写了equals方法就必须重写hashCode方法（我不知道为什么，现在也不想知道)</p>
-<p>而且equals和hashCode返回的结果必须相同（java核心技术 卷I P180）</p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/347342971">文章1</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/295017220">文章2</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/20/%E5%A4%8D%E4%B9%A0001/" data-id="cl70ovvik0000ncvi1kt7bnwg" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-Markdown语法学习" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2022/08/19/Markdown%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0/" class="article-date">
-  <time datetime="2022-08-19T08:43:35.274Z" itemprop="datePublished">2022-08-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/19/Markdown%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0/">MarkDown语法学习</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="标题语法"><a href="#标题语法" class="headerlink" title="标题语法"></a>标题语法</h2><p>在标题前加#，n个#对应了n级标题  </p>
-<hr>
-<h2 id="段落语法"><a href="#段落语法" class="headerlink" title="段落语法"></a>段落语法</h2><p>用空白行分段，但是不要用制表符和空格为段落缩进</p>
-<p>上面是一个空白行</p>
-<hr>
-<h2 id="换行语法"><a href="#换行语法" class="headerlink" title="换行语法"></a>换行语法</h2><p>在一行的后面添加两个空格后回车才能实现换行，比如这样  </p>
-<p>要是我不添加空格直接回车呢，比如这样</p>
-<p>这样就没有换行是吗</p>
-<p>___A</p>
-<h2 id="强调语法"><a href="#强调语法" class="headerlink" title="强调语法"></a>强调语法</h2><h3 id="粗体"><a href="#粗体" class="headerlink" title="粗体"></a>粗体</h3><p>再要用粗体的地方前后加上两个*比如这样 <strong>加粗</strong></p>
-<h3 id="斜体"><a href="#斜体" class="headerlink" title="斜体"></a>斜体</h3><p>在要用到斜体的地方前后加上一个*比如这样 <em>斜体</em>   </p>
-<p>同时粗体斜体就是三个比如这样 <em><strong>粗体加斜体</strong></em>   </p>
-<hr>
-<h2 id="引用语法"><a href="#引用语法" class="headerlink" title="引用语法"></a>引用语法</h2><p>在需要引用的部分前面加 &gt;    </p>
-<blockquote>
-<p>这是引用  </p>
-<blockquote>
-<p>这是嵌套的二级引用，几级引用就加几个&gt;。引用里面也可以用其他语法  </p>
-<p>三四五六七  </p>
-</blockquote>
-<p>八九十  </p>
-<p>八九不离十  不知道怎么搞的奇奇怪怪的，反正应该也不会这么用吧</p>
-</blockquote>
-<h2 id="列表语法"><a href="#列表语法" class="headerlink" title="列表语法"></a>列表语法</h2><p>有序就是加上数字序号和一个英文句点和一个空格，可以嵌套  </p>
-<p>无序列表就在前面加上-和空格</p>
-<ol>
-<li>这是有序列表一</li>
-<li>二</li>
-<li>三<ol>
-<li>三里面嵌套的一</li>
-<li>三里面嵌套的二</li>
-<li>三里面嵌套的三</li>
-</ol>
-</li>
-<li>四</li>
-</ol>
-<ul>
-<li>这是无序列表</li>
-<li>这是无序列表</li>
-<li>这是无序列表</li>
-<li><ul>
-<li>这是嵌套的</li>
-<li>这也是</li>
-<li>也是</li>
-</ul>
-</li>
-<li>出来了</li>
-</ul>
-<hr>
-<h2 id="代码语法"><a href="#代码语法" class="headerlink" title="代码语法"></a>代码语法</h2><p>就是用`把代码包起来，比如  </p>
-<p><code> code</code>  </p>
-<hr>
-<h2 id="分割线语法"><a href="#分割线语法" class="headerlink" title="分割线语法"></a>分割线语法</h2><p>在单独一行上用三个下划线___，在分割线的上下两行添加空白行  (typora里面好像不用加)</p>
-<hr>
-<p>给上面的都加上  </p>
-<hr>
-<h2 id="链接和图片"><a href="#链接和图片" class="headerlink" title="链接和图片"></a>链接和图片</h2><p>方括号里面放链接显示的名称，圆括号里面放链接地址,地址后面加空格可以在双引号里面写title  </p>
-<p>这是一个链接<a target="_blank" rel="noopener" href="http://jwc.whut.edu.cn/" title="wut">武汉理工大学本科生院</a>  </p>
-<p>尖括号可以直接地址email变链接  </p>
-<p><strong><a href="mailto:&#x32;&#x33;&#x35;&#50;&#55;&#48;&#54;&#55;&#x37;&#51;&#64;&#x71;&#x71;&#x2e;&#x63;&#111;&#109;">&#x32;&#x33;&#x35;&#50;&#55;&#48;&#54;&#55;&#x37;&#51;&#64;&#x71;&#x71;&#x2e;&#x63;&#111;&#109;</a></strong>  </p>
-<p><em><a target="_blank" rel="noopener" href="http://jwc.whut.edu.cn/">http://jwc.whut.edu.cn/</a></em>      </p>
-<hr>
-<p>添加图片用!然后在方括号里随便填点文字，最后圆括号里面加上图片链接和title</p>
-<p><img src="https://img-blog.csdnimg.cn/67f4a74e24cc447a9d5cbc19979bf302.jpeg" alt="this is a picture" title=" 白嫖typora">  </p>
-<p>也可以给图片添加链接很容易，在最外面再套一个方括号，外面再写一个圆括号里面写链接地址就ok了  </p>
-<hr>
-<h2 id="over"><a href="#over" class="headerlink" title="over"></a>over</h2><p><a target="_blank" rel="noopener" href="https://markdown.com.cn/basic-syntax/" title="for more">markdown官方教程</a>  </p>
-<p><a target="_blank" rel="noopener" href="https://markdown.com.cn/basic-syntax/">Markdown 基本语法 | Markdown 官方教程</a></p>
-<p>这个typora好像可以直接复制网页链接自动生成吖</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/19/Markdown%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0/" data-id="cl70aados0000gcvi4edpf1a5" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2022/08/18/hello-world/" class="article-date">
-  <time datetime="2022-08-18T06:19:08.012Z" itemprop="datePublished">2022-08-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/18/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/18/hello-world/" data-id="cl70aadp10001gcvi4ufxa03c" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
 
 </section>
         
