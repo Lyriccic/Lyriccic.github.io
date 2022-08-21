@@ -7,15 +7,15 @@
   
   <title>复习001 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="有关super 调用父类中的方法，只会调用离自己最近的那个父类中的方法 调用父类构造器可以根据参数的不同调用父类中的不同构造器，前提是父类中有这样的构造器  有关多态包括方法的重载和覆写还有对象的多态性 对象的多态性子类的对象可以赋值给父类的变量 ，这样的变量依然是一个声明为超类的变量，他不能直接调用子类中的方法或者字段，如果一定要调用需要强制类型转换向下转型。但是不能将超类的引用赋值给子类的变量">
+  <meta name="description" content="有关super 和 this super调用父类中的方法，只会调用离自己最近的那个父类中的方法 super调用父类构造器可以根据参数的不同调用父类中的不同构造器，前提是父类中有这样的构造器 this 调用本类重载的其他构造器（有可能会在构造器中用this调用的，这里的其他是为了排除本身所在的构造器） this用来调用本类中的方法和属性 如果要在构造器中使用this或者super调用构造器，那他们必">
 <meta property="og:type" content="article">
 <meta property="og:title" content="复习001">
 <meta property="og:url" content="http://example.com/2022/08/20/%E5%A4%8D%E4%B9%A0001/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="有关super 调用父类中的方法，只会调用离自己最近的那个父类中的方法 调用父类构造器可以根据参数的不同调用父类中的不同构造器，前提是父类中有这样的构造器  有关多态包括方法的重载和覆写还有对象的多态性 对象的多态性子类的对象可以赋值给父类的变量 ，这样的变量依然是一个声明为超类的变量，他不能直接调用子类中的方法或者字段，如果一定要调用需要强制类型转换向下转型。但是不能将超类的引用赋值给子类的变量">
+<meta property="og:description" content="有关super 和 this super调用父类中的方法，只会调用离自己最近的那个父类中的方法 super调用父类构造器可以根据参数的不同调用父类中的不同构造器，前提是父类中有这样的构造器 this 调用本类重载的其他构造器（有可能会在构造器中用this调用的，这里的其他是为了排除本身所在的构造器） this用来调用本类中的方法和属性 如果要在构造器中使用this或者super调用构造器，那他们必">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-19T16:31:21.816Z">
-<meta property="article:modified_time" content="2022-08-19T16:31:21.929Z">
+<meta property="article:modified_time" content="2022-08-21T13:28:04.530Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -88,15 +88,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="有关super"><a href="#有关super" class="headerlink" title="有关super"></a>有关super</h3><ol>
-<li>调用父类中的方法，只会调用离自己最近的那个父类中的方法</li>
-<li>调用父类构造器可以根据参数的不同调用父类中的不同构造器，前提是父类中有这样的构造器</li>
+        <h3 id="有关super-和-this"><a href="#有关super-和-this" class="headerlink" title="有关super 和 this"></a>有关super 和 this</h3><ol>
+<li>super调用父类中的方法，只会调用离自己最近的那个父类中的方法</li>
+<li>super调用父类构造器可以根据参数的不同调用父类中的不同构造器，前提是父类中有这样的构造器</li>
+<li>this 调用本类重载的其他构造器（有可能会在构造器中用this调用的，这里的其他是为了排除本身所在的构造器）</li>
+<li>this用来调用本类中的方法和属性</li>
+<li>如果要在构造器中使用this或者super调用构造器，那他们必须写在类的首行，如果既不写this也不写super其实默认写了super空参数<br>因为加载子类之前会把他的所有超类先加载了。总之无论如何，都会先调用父类构造器</li>
 </ol>
 <h3 id="有关多态"><a href="#有关多态" class="headerlink" title="有关多态"></a>有关多态</h3><p>包括方法的重载和覆写还有对象的多态性</p>
 <h4 id="对象的多态性"><a href="#对象的多态性" class="headerlink" title="对象的多态性"></a>对象的多态性</h4><p><strong>子类的对象可以赋值给父类的变量</strong> ，这样的变量依然是一个声明为超类的变量，他不能直接调用子类中的方法或者字段，如果一定要调用需要强制类型转换向下转型。但是<strong>不能将超类的引用赋值给子类的变量</strong> 。实际上就是向上转型和向下转型，其中子类对象赋值给父类变量是向上转型，程序会自动完成。向下转型是指把已经赋上了子类对象的父类变量用强制类型转换强制转换为子类变量并且赋值给子类变量</p>
 <p><code>Father father = new Son()</code>  //向上转型</p>
 <p><code>Son son = (Son) father</code>  //向下转型</p>
-<h3 id="有关final方法"><a href="#有关final方法" class="headerlink" title="有关final方法"></a>有关final方法</h3><p>一个方法被声明为final方法就不可以在子类中覆盖了  </p>
+<p>父类引用指向子类对象时，通过子类对象只能调用父类和子类中共有的方法，而且实际是子类重写过的那个，无法调用子类特有的方法！（因为这个引用是父类，编译的时候看的是左边，运行看右边）<br>就是编译的时候看左边类型，检查类型中是否存在需要调用的字段或者方法，运行的时候看右边具体是什么对象。** 但是对象的多态性只适用于方法不适用于属性 **，也就是说如果通过上述调用调用了一个属性，那么得到的将是父类中的那个。</p>
+<ul>
+<li>另外多态性是一个运行时行为 *<br>动态绑定是在运行时才确定》》》重载<br>静态绑定是在编译时就确定》》》重写<h3 id="有关final方法"><a href="#有关final方法" class="headerlink" title="有关final方法"></a>有关final方法</h3></li>
+</ul>
+<p>一个方法被声明为final方法就不可以在子类中覆盖了  </p>
 <p><code>public final String say（return &quot;hello&quot;;）&#123;&#125;</code>  </p>
 <p>一个类如果被声明为final那么类中的方法就会自动变成final方法，但是类中的字段没有这样的要求</p>
 <p>方法和类声明为final的原因是有时候需要他们不会在子类中改变语义</p>
