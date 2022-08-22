@@ -74,10 +74,19 @@
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/08/20/%E5%A4%8D%E4%B9%A0002/">复习002</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<h2 id="复习002"><a href="#复习002" class="headerlink" title="复习002"></a>复习002</h2><h3 id="toString方法"><a href="#toString方法" class="headerlink" title="toString方法"></a>toString方法</h3><p>只要对象与一个字符串通过操作符“+”连接起来，java编译器就会自动地调用toString方法来获得这个对象的字符串描述。println方法会自动调用toString方法，如果需要打印数组需要Arrays.toString方法，会打印出外形酷似python中列表的数组字符串</p>
+        <h3 id="toString方法"><a href="#toString方法" class="headerlink" title="toString方法"></a>toString方法</h3><p>只要对象与一个字符串通过操作符“+”连接起来，java编译器就会自动地调用toString方法来获得这个对象的字符串描述。println方法会自动调用toString方法，如果需要打印数组需要Arrays.toString方法，会打印出外形酷似python中列表的数组字符串</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] num = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> Arrays.toString(num);</span><br></pre></td></tr></table></figure>
 
 <p>把s输出得到字符串”[1,2,3,4,5,6]”</p>
@@ -209,7 +218,7 @@
 <h3 id="有关多态"><a href="#有关多态" class="headerlink" title="有关多态"></a>有关多态</h3><p>包括方法的重载和覆写还有对象的多态性</p>
 <h4 id="对象的多态性"><a href="#对象的多态性" class="headerlink" title="对象的多态性"></a>对象的多态性</h4><p><strong>子类的对象可以赋值给父类的变量</strong> ，这样的变量依然是一个声明为超类的变量，他不能直接调用子类中的方法或者字段，如果一定要调用需要强制类型转换向下转型。但是<strong>不能将超类的引用赋值给子类的变量</strong> 。实际上就是向上转型和向下转型，其中子类对象赋值给父类变量是向上转型，程序会自动完成。向下转型是指把已经赋上了子类对象的父类变量用强制类型转换强制转换为子类变量并且赋值给子类变量</p>
 <p><code>Father father = new Son()</code>  //向上转型</p>
-<p><code>Son son = (Son) father</code>  //向下转型</p>
+<p><code>Son son = (Son) father</code>  //向下转型<br>为了避免向下转型异常，可以使用instanceof操作符先进行条件判断。</p>
 <p>父类引用指向子类对象时，通过子类对象只能调用父类和子类中共有的方法，而且实际是子类重写过的那个，无法调用子类特有的方法！（因为这个引用是父类，编译的时候看的是左边，运行看右边）<br>就是编译的时候看左边类型，检查类型中是否存在需要调用的字段或者方法，运行的时候看右边具体是什么对象。** 但是对象的多态性只适用于方法不适用于属性 **，也就是说如果通过上述调用调用了一个属性，那么得到的将是父类中的那个。</p>
 <ul>
 <li>另外多态性是一个运行时行为 *<br>动态绑定是在运行时才确定》》》重载<br>静态绑定是在编译时就确定》》》重写<h3 id="有关final方法"><a href="#有关final方法" class="headerlink" title="有关final方法"></a>有关final方法</h3></li>
@@ -430,7 +439,7 @@
       <ul>
         
           <li>
-            <a href="/2022/08/20/%E5%A4%8D%E4%B9%A0002/">(no title)</a>
+            <a href="/2022/08/20/%E5%A4%8D%E4%B9%A0002/">复习002</a>
           </li>
         
           <li>
