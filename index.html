@@ -64,6 +64,99 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-面向对象(尚硅谷视频笔记)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/08/22/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1(%E5%B0%9A%E7%A1%85%E8%B0%B7%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0)/" class="article-date">
+  <time datetime="2022-08-22T12:43:44.288Z" itemprop="datePublished">2022-08-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/08/22/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1(%E5%B0%9A%E7%A1%85%E8%B0%B7%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0)/">面向对象(尚硅谷视频笔记)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Object类的使用"><a href="#Object类的使用" class="headerlink" title="Object类的使用"></a>Object类的使用</h2><p>主要先看两个方法另外后面会遇到。</p>
+<h3 id="equals-方法"><a href="#equals-方法" class="headerlink" title="equals()方法"></a>equals()方法</h3><ul>
+<li><p>关于==：==用于比较基本数据类型和引用数据类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"><span class="type">double</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">10.0</span>;</span><br><span class="line">System.out.println(i == j);<span class="comment">//返回true</span></span><br></pre></td></tr></table></figure>
+
+<p>==运算符比较基本数据类型的时候不必须两端数据类型相同，存在自动类型提升，在其他运算符操作时自动类型提升也适用（基本数据类型运算不和布尔型玩，布尔型只能自己和自己玩）</p>
+<p>比较的是基本数据类型的时候就比较内容是否相同</p>
+<p>比较的是引用数据类型的时候比较的是地址值是否相同</p>
+</li>
+<li><p>equals()方法不能使用在基本数据类型的比较</p>
+<ul>
+<li>object类中的equals方法和==是完全是相同的，比较两个对象的地址值是否相同</li>
+<li>像string、date、file、包装类等类都重写了object类中的equals方法，比较的是两个对象的”实体内容“是否相同</li>
+</ul>
+</li>
+<li><p>自定义类重写equals方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object obj)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">this</span> == obj)&#123;<span class="keyword">return</span> <span class="literal">true</span>;&#125;<span class="comment">//先判断该两个对象地址是否相同，如果相同就不用再比下去了</span></span><br><span class="line">	<span class="keyword">if</span>(obj <span class="keyword">instanceof</span> A)&#123;<span class="comment">//如果obj是一个A类对象就强制转型后比较具体内容，否则返回false，强制转型的原因是因为：形参是声明为object的对象，因为属性没有多态，所以要是不强制类型转换的话就无法调用对应的属性</span></span><br><span class="line">	<span class="type">A</span> <span class="variable">a</span> <span class="operator">=</span> (A)obj;</span><br><span class="line">	...</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里只是介绍思路，期数idea可以自动生成方便得多</p>
+</li>
+</ul>
+<h3 id="toString-方法"><a href="#toString-方法" class="headerlink" title="toString()方法"></a>toString()方法</h3><ul>
+<li><p>当我们输出一个对象的引用的时候就实际上调用了当前对象的toString方法</p>
+</li>
+<li><p>string、date、file、包装类等类都重写了object类中的toString方法</p>
+</li>
+<li><p>自定义类可以重写toString方法，返回具体内容。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> String <span class="title function_">toSring</span><span class="params">()</span>&#123;</span><br><span class="line">	return...；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>也可以通过idea自动实现</p>
+</li>
+</ul>
+<h3 id="包装类的使用"><a href="#包装类的使用" class="headerlink" title="包装类的使用"></a>包装类的使用</h3><p>包装类的存在是为了让基本数据类型也可以面向对象,数值型都继承number类</p>
+<ul>
+<li><p>基本数据类型、包装类、string三者相互转化</p>
+<ul>
+<li><p>基本数据类型转换成包装类：调用包装类构造器或者valueOf方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> <span class="string">&quot;123&quot;</span>;</span><br><span class="line"><span class="type">Integer</span> <span class="variable">i</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Integer</span>(n);</span><br><span class="line"><span class="type">Integer</span> <span class="variable">j</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Integer</span>(s);</span><br><span class="line"></span><br><span class="line"><span class="type">boolean</span> b1;<span class="comment">//未初始化b1为false</span></span><br><span class="line">Boolean b2;<span class="comment">//对象未初始化，b2为null</span></span><br><span class="line"><span class="comment">//还可以通过valueOf方法</span></span><br><span class="line"><span class="type">Integer</span> <span class="variable">G</span> <span class="operator">=</span> Integer.valueOf(n);</span><br><span class="line"><span class="type">Integer</span> <span class="variable">S</span> <span class="operator">=</span> Integer.valueOf(s);</span><br></pre></td></tr></table></figure></li>
+<li><p>包装类转化为基本数据类型：调用包装类的xxxValue方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Integer</span> <span class="variable">in1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Integer</span>(<span class="number">12</span>);</span><br><span class="line"><span class="type">int</span> <span class="variable">n1</span> <span class="operator">=</span> in1.intValue();</span><br></pre></td></tr></table></figure>
+
+<p>在实际运用中其实不必操心，会有自动装箱和自动拆箱。</p>
+</li>
+<li><p>基本数据类型和包装类转化为string</p>
+<ol>
+<li><p>+” “和toString方法</p>
+</li>
+<li><p>```java<br>float f1 = 12.3f;<br>String s1 = String.valueOf(f1);<br>Double d1 = new Double(12.4);<br>String s2 = String.valueOf(d1);</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- string转化为基本数据类型和包装类</span><br><span class="line"></span><br><span class="line">  ```java</span><br><span class="line">  Boolean b = new Boolean(&quot;true&quot;);</span><br><span class="line">  Boolean c = new Boolean(&quot;其他乱七八糟，只要不是忽略大小写的true,那么这个对象就是false&quot;);</span><br><span class="line">  boolean d = Boolean.parseBoolean(&quot;true&quot;);</span><br><span class="line">  boolean e = Boolean.parseBoolean(&quot;其他乱七八糟，只要不是忽略大小写的true,那么这个对象就是false&quot;);</span><br><span class="line">  </span><br><span class="line">  String k = &quot;13&quot;;</span><br><span class="line">  int num1 = Integer.parseInt(k);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="小测试"><a href="#小测试" class="headerlink" title="小测试"></a>小测试</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="literal">true</span> ? <span class="keyword">new</span> <span class="title class_">Integer</span>(<span class="number">1</span>) : <span class="keyword">new</span> <span class="title class_">Double</span>(<span class="number">2</span>);</span><br><span class="line">System.out.println(obj);<span class="comment">//输出的是1.0而不是1。</span></span><br></pre></td></tr></table></figure>
+
+<p>因为三元运算符要求？两侧类型相同，于是Integer自动提升为1.0</p>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/08/22/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1(%E5%B0%9A%E7%A1%85%E8%B0%B7%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0)/" data-id="cl74ztte90000dkvi5f7n3pp0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-复习002" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2022/08/20/%E5%A4%8D%E4%B9%A0002/" class="article-date">
@@ -171,6 +264,9 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public static Integer valueOf(int i) &#123;</span><br><span class="line">    if (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</span><br><span class="line">        return IntegerCache.cache[i + (-IntegerCache.low)];</span><br><span class="line">    return new Integer(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>然而，对于为什么a和b一开始是同一个对象的两个引用最后分道扬镳了还没找到能说服自己的答案。</p>
+<p>（也许是这里的加以是直接指向了常量池的4，直接改变了指向，一开始就是两个指向指向同一个常量（源码里是-128到127的一个final数组，Integer内部定义了IntegerCache结构，这其中定义了Integer的数组（final）,在这个范围内都是直接使用的而不回去new）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="type">int</span> <span class="variable">pp</span> <span class="operator">=</span> <span class="number">3</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">r</span> <span class="operator">=</span> pp;</span><br><span class="line"><span class="type">int</span> <span class="variable">y</span> <span class="operator">=</span> pp;</span><br><span class="line">r = r+<span class="number">1</span>;</span><br><span class="line">System.out.println(r);<span class="comment">//4</span></span><br><span class="line">System.out.println(pp);<span class="comment">//3</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <h3 id="感觉这样复习效率极低"><a href="#感觉这样复习效率极低" class="headerlink" title="感觉这样复习效率极低"></a>感觉这样复习效率极低</h3><p>核心技术这本书先放一放</p>
 
       
@@ -437,6 +533,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/08/22/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1(%E5%B0%9A%E7%A1%85%E8%B0%B7%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0)/">面向对象(尚硅谷视频笔记)</a>
+          </li>
         
           <li>
             <a href="/2022/08/20/%E5%A4%8D%E4%B9%A0002/">复习002</a>

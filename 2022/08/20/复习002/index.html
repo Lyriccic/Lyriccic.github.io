@@ -15,7 +15,7 @@
 <meta property="og:description" content="toString方法只要对象与一个字符串通过操作符“+”连接起来，java编译器就会自动地调用toString方法来获得这个对象的字符串描述。println方法会自动调用toString方法，如果需要打印数组需要Arrays.toString方法，会打印出外形酷似python中列表的数组字符串 12int[] num &#x3D; &amp;#123;1,2,3,4,5,6&amp;#125;;String s &#x3D; Arr">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-20T07:51:10.463Z">
-<meta property="article:modified_time" content="2022-08-21T15:15:39.469Z">
+<meta property="article:modified_time" content="2022-08-22T16:47:20.307Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -173,6 +173,9 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public static Integer valueOf(int i) &#123;</span><br><span class="line">    if (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</span><br><span class="line">        return IntegerCache.cache[i + (-IntegerCache.low)];</span><br><span class="line">    return new Integer(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>然而，对于为什么a和b一开始是同一个对象的两个引用最后分道扬镳了还没找到能说服自己的答案。</p>
+<p>（也许是这里的加以是直接指向了常量池的4，直接改变了指向，一开始就是两个指向指向同一个常量（源码里是-128到127的一个final数组，Integer内部定义了IntegerCache结构，这其中定义了Integer的数组（final）,在这个范围内都是直接使用的而不回去new）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="type">int</span> <span class="variable">pp</span> <span class="operator">=</span> <span class="number">3</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">r</span> <span class="operator">=</span> pp;</span><br><span class="line"><span class="type">int</span> <span class="variable">y</span> <span class="operator">=</span> pp;</span><br><span class="line">r = r+<span class="number">1</span>;</span><br><span class="line">System.out.println(r);<span class="comment">//4</span></span><br><span class="line">System.out.println(pp);<span class="comment">//3</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <h3 id="感觉这样复习效率极低"><a href="#感觉这样复习效率极低" class="headerlink" title="感觉这样复习效率极低"></a>感觉这样复习效率极低</h3><p>核心技术这本书先放一放</p>
 
       
@@ -186,6 +189,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2022/08/22/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1(%E5%B0%9A%E7%A1%85%E8%B0%B7%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          面向对象(尚硅谷视频笔记)
+        
+      </div>
+    </a>
   
   
     <a href="/2022/08/20/%E5%A4%8D%E4%B9%A0001/" id="article-nav-older" class="article-nav-link-wrap">
@@ -225,6 +237,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/08/22/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1(%E5%B0%9A%E7%A1%85%E8%B0%B7%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0)/">面向对象(尚硅谷视频笔记)</a>
+          </li>
         
           <li>
             <a href="/2022/08/20/%E5%A4%8D%E4%B9%A0002/">复习002</a>
