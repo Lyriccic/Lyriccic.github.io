@@ -64,9 +64,138 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-面向对象(尚硅谷视频笔记)" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-项目一：编写一个计算器（图形界面）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/08/22/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1(%E5%B0%9A%E7%A1%85%E8%B0%B7%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0)/" class="article-date">
+    <a href="/2022/08/23/%E9%A1%B9%E7%9B%AE%E4%B8%80%EF%BC%9A%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E8%AE%A1%E7%AE%97%E5%99%A8%EF%BC%88%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%EF%BC%89/" class="article-date">
+  <time datetime="2022-08-23T10:26:53.555Z" itemprop="datePublished">2022-08-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/08/23/%E9%A1%B9%E7%9B%AE%E4%B8%80%EF%BC%9A%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E8%AE%A1%E7%AE%97%E5%99%A8%EF%BC%88%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%EF%BC%89/">项目一：编写一个计算器（图形界面）（待办）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="界面"><a href="#界面" class="headerlink" title="界面"></a>界面</h2><p>包括</p>
+<ul>
+<li><p>从零到九的数字按钮</p>
+</li>
+<li><p>加减乘除等于运算符按钮</p>
+</li>
+<li><p>归零按钮</p>
+</li>
+<li><p>退格按钮</p>
+</li>
+<li><p>最好出现一个显示器用于显示运算操作</p>
+</li>
+<li><p>给每个按钮建立监听</p>
+</li>
+</ul>
+<p><img src="C:\Users\FOX\AppData\Roaming\Typora\typora-user-images\image-20220823171154395.png" alt="image-20220823171154395"></p>
+<p>类似微软自带的计算器</p>
+<h2 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h2><p>输入一个数字，将这个数字保存在数组a中，并且输出在显示屏上</p>
+<p>点击一个运算符按钮，把这个操作符对应的字符串保存在数组b中并且输出在显示屏上</p>
+<p>在输入一个数字，将这个数字也保存在刚刚数组a中，并且保存再显示屏上面</p>
+<p>点击等于号，将把数组a中下标为0的数赋值给变量temp0，把数组中下标为1的赋值给temp1，检查数组b中的操作符是什么，如果是+就temp0+temp1，其他操作符类似，把得到的结果呈现再显示屏上。随后把清空数组a和数组b清空准备下一次运算</p>
+<p>如果是做连续运算，那么就是连续向数组a中添加数字，向数组b中添加运算符，然后点击等于号的时候根据数组b的长度确定运算次数。数组a的长度一定是比数组b的长度多1。</p>
+<p>先检测数组b中是否存在乘除运算符，下面这个为例如果检验到乘除运算符，确定其下标n和m（例中下标为1和2），那么数组a中n和n+1下表对应的数字就是乘操作符两端的数字，m和m+1对应的是除操作两端的数字。为了避免混乱，我自己规定先算乘再算除，运算a[n]*a[n+1]，移除a[n]和a[n+1]并把得到的结果保存到数组a的a[n]，把数字量列表b中的乘号移除，然后再检查是否有乘除重复上述操作直到没有乘除再进行加减的简单运算</p>
+<p><em>发现问题，用数组的话长度不可变，改用泛型数组列表,，以上提到的数组全部改为泛型数组列表</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span>[] a = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>&#125;;</span><br><span class="line">String[] b = &#123;<span class="string">&quot;+&quot;</span>,<span class="string">&quot;*&quot;</span>,<span class="string">&quot;/&quot;</span>,<span class="string">&quot;-&quot;</span>&#125;;<span class="comment">//1+2*3/4-2=0.5</span></span><br><span class="line"><span class="comment">//String[] b = &#123;&quot;+&quot;,&quot;*&quot;,&quot;-&quot;,&quot;/&quot;&#125;;//对应的计算是1+2*3-4/2=3</span></span><br><span class="line"><span class="type">double</span>[] a = &#123;<span class="number">1</span>,<span class="number">6</span>,<span class="number">4</span>,<span class="number">2</span>&#125;;</span><br><span class="line">String[]b = &#123;<span class="string">&quot;+&quot;</span>,<span class="string">&quot;/&quot;</span>,<span class="string">&quot;-&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;Double&gt; a = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">ArrayList&lt;Double&gt; b = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/08/23/%E9%A1%B9%E7%9B%AE%E4%B8%80%EF%BC%9A%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E8%AE%A1%E7%AE%97%E5%99%A8%EF%BC%88%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%EF%BC%89/" data-id="cl76d6ivf0002govieiytf4mn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-(尚硅谷视频笔记)02" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/08/23/(%E5%B0%9A%E7%A1%85%E8%B0%B7%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0)02/" class="article-date">
+  <time datetime="2022-08-23T07:25:43.530Z" itemprop="datePublished">2022-08-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/08/23/(%E5%B0%9A%E7%A1%85%E8%B0%B7%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0)02/">(尚硅谷视频笔记)02</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="static关键字的使用"><a href="#static关键字的使用" class="headerlink" title="static关键字的使用"></a>static关键字的使用</h2><ol>
+<li><p>静态的</p>
+</li>
+<li><p>用来修饰属性、方法、代码块、内部类：</p>
+<ul>
+<li><p>静态变量（类变量）：static修饰的属性：多个对象共享同一个静态变量，当通过某一个对象修改静态变量的时候，通过另一个对象调用的时候该属性已经发生改变  </p>
+<p>由于静态变量随着类加载而加载，早于对象的加载，所以可以通过类名直接调用。</p>
+<p>因为类只会加载一次，所以静态变量在内存只存在一份，存在于方法区的静态域中。</p>
+<p><em>插一句方法区独立于栈和堆，方法区中存储的时候类的加载信息、静态域、常量池</em></p>
+<p>实例变量：没有static修饰的属性：每个对象对应一个，修改一个不会影响另一个</p>
+</li>
+<li><p>静态方法：也是随着类加载而加载，可以通过类直接调用，也可以通过对象调用，和静态属性类似</p>
+<p>静态方法中只能调用静态方法和静态属性（因为他们生命周期相同，可能在调用的时候非静态还没产生，这样就不好了），非静态方法静态非静态都可以调用</p>
+<p>静态方法中不能写this关键字和super关键字（因为这两者都是基于对象的—&gt;就是假如有一个eat方法里面调用了info方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span>&#123;</span><br><span class="line"><span class="built_in">this</span>.info();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用的时候</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">People</span> <span class="variable">peo</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">People</span>();</span><br><span class="line">peo.eat()</span><br></pre></td></tr></table></figure>
+
+<p>这个时候this指代的就是peo这个对象）</p>
+</li>
+</ul>
+</li>
+<li><p>在开发中如何确定是否要声明为static</p>
+<ul>
+<li>属性：可以被多个对象共享的属性</li>
+<li>方法：操作静态属性的方法通常声明为static方法；工具类中的方法习惯上声明为static方法。</li>
+</ul>
+</li>
+</ol>
+<p>看到322了，去apex</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/08/23/(%E5%B0%9A%E7%A1%85%E8%B0%B7%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0)02/" data-id="cl76d6ivd0001govicor6gk3c" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-(尚硅谷视频笔记)01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/08/22/(%E5%B0%9A%E7%A1%85%E8%B0%B7%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0)01/" class="article-date">
   <time datetime="2022-08-22T12:43:44.288Z" itemprop="datePublished">2022-08-22</time>
 </a>
     
@@ -78,7 +207,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/22/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1(%E5%B0%9A%E7%A1%85%E8%B0%B7%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0)/">面向对象(尚硅谷视频笔记)</a>
+      <a class="article-title" href="/2022/08/22/(%E5%B0%9A%E7%A1%85%E8%B0%B7%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0)01/">(尚硅谷视频笔记)01</a>
     </h1>
   
 
@@ -147,7 +276,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/22/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1(%E5%B0%9A%E7%A1%85%E8%B0%B7%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0)/" data-id="cl74ztte90000dkvi5f7n3pp0" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/08/22/(%E5%B0%9A%E7%A1%85%E8%B0%B7%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0)01/" data-id="cl76d6iv90000govihy3yeqob" class="article-share-link">Share</a>
       
       
     </footer>
@@ -535,7 +664,15 @@
       <ul>
         
           <li>
-            <a href="/2022/08/22/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1(%E5%B0%9A%E7%A1%85%E8%B0%B7%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0)/">面向对象(尚硅谷视频笔记)</a>
+            <a href="/2022/08/23/%E9%A1%B9%E7%9B%AE%E4%B8%80%EF%BC%9A%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E8%AE%A1%E7%AE%97%E5%99%A8%EF%BC%88%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%EF%BC%89/">项目一：编写一个计算器（图形界面）（待办）</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/23/(%E5%B0%9A%E7%A1%85%E8%B0%B7%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0)02/">(尚硅谷视频笔记)02</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/22/(%E5%B0%9A%E7%A1%85%E8%B0%B7%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0)01/">(尚硅谷视频笔记)01</a>
           </li>
         
           <li>
@@ -544,14 +681,6 @@
         
           <li>
             <a href="/2022/08/20/%E5%A4%8D%E4%B9%A0001/">复习001</a>
-          </li>
-        
-          <li>
-            <a href="/2022/08/19/Markdown%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0/">MarkDown语法学习</a>
-          </li>
-        
-          <li>
-            <a href="/2022/08/18/hello-world/">Hello World</a>
           </li>
         
       </ul>
