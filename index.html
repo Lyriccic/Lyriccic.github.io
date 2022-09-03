@@ -74,13 +74,22 @@
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/09/01/%E4%B9%9D%E6%9C%88%E4%B8%80%E6%97%A5%E6%80%9D%E8%80%83/">九月一日检讨</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<h2 id="九月一日检讨"><a href="#九月一日检讨" class="headerlink" title="九月一日检讨"></a>九月一日检讨</h2><p>由于今天长时间摆烂，特此检讨。实际上，检讨的不仅仅是因为这一天的摆烂，而是来学校以来或者更早一直都是处于一种心里想的和实际做的南辕北辙的状态。</p>
+        <p>由于今天长时间摆烂，特此检讨。实际上，检讨的不仅仅是因为这一天的摆烂，而是来学校以来或者更早一直都是处于一种心里想的和实际做的南辕北辙的状态。</p>
 <p>今天是周四，从中午十二点二十分下课开始就没课了，原本昨天晚上想的是开学以来唯一一次这么大把的时间我一定要好好利用起来，去写我的计算器，或者学习或复习java。但是时期情况和我的计划完全相反。我来分析一下原因:</p>
 <ol>
-<li>概率论和线代是同一个老师，就是那个被隔离的老师，所以上的是网课。因为不知道他被隔离我还去了教室对着手机看腾讯会议(后来中途回宿舍了)，因为第一节课我感觉讲的好简单那，我就一边听课一边玩游戏一边吃饭。于是课结束我的心也回不来了。这只是今天的表面原因</li>
+<li>概率论和线代是同一个老师，就是那个被隔离的老师，所以上的是网课。因为不知道他被隔离我还去了教室对着手机看腾讯会议(后来中途回宿舍了)，因为第一节课我感觉讲的好简单那，我就一边听课一边玩游戏一边吃饭。只是课结束我的心却回不来了。这只是今天的表面原因</li>
 <li>对于非常纷繁复杂的要学的知识产生了一些抵触，但其实也并不是抵触，其实是非常想要去学的，但是行动力不足。</li>
 <li>被一些琐事缠身</li>
 </ol>
@@ -98,6 +107,65 @@
     </div>
     <footer class="article-footer">
       <a data-url="http://example.com/2022/09/01/%E4%B9%9D%E6%9C%88%E4%B8%80%E6%97%A5%E6%80%9D%E8%80%83/" data-id="cl7j6nkpl0000gcvi4gfneoxo" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-九月二日" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/08/29/%E4%B9%9D%E6%9C%88%E4%BA%8C%E6%97%A5/" class="article-date">
+  <time datetime="2022-08-29T13:59:27.023Z" itemprop="datePublished">2022-08-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="2022-09-02"><a href="#2022-09-02" class="headerlink" title="2022.09.02"></a>2022.09.02</h2><h2 id="单例设计模式"><a href="#单例设计模式" class="headerlink" title="单例设计模式"></a>单例设计模式</h2><ul>
+<li><p>设计模式：是一种代码结构，编程风格和思考模式》》》套路</p>
+</li>
+<li><p>单例的设计模式是指：采取一定的方法保证整个软件系统中只能存在一个对象实例，</p>
+<p>首先要<strong>私有化构造器</strong>，这是为了防止在类的外面用构造器new出多个对象。然后<strong>内部创建类的对象，要私有化和静态化</strong>。第三步，<strong>提供静态方法方法返回类的对象</strong>。</p>
+<ul>
+<li>```java<br>//饿汉式<br>class Bank{<pre><code>private Bank()&#123;//私有化构造器
+
+&#125;
+private static Bank instance = new Bank();//内部创建私有静态的类的对象
+public static Bank getInstance()&#123;//静态公共方法返回类的对象
+    return instance;//因为方法是static的，所以对象也必须是static的。方法是static的原因是因为，如果不是static的话就必须创建对象调用，但是只有调用这个方法才能创建对象，陷入死锁
+</code></pre>
+}<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">在main中用getInstance方法获得对象</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">Bank bank1 = Bank.getInstance();</span><br><span class="line">Bank bank2 = Bank.getInstance();</span><br></pre></td></tr></table></figure>
+
+这里bank1和bank2是同一个对象，因为用的是static创建的类的对象，这个都西昂适合类一起加载的。</li>
+<li>```java<br>//懒汉式<br>class Order{<pre><code>private Order()&#123;//私有化构造器，防止在外面用new创建对象
+    
+&#125;
+private static Order instance = null;//声明当前类的对象
+public static Order getInstance()&#123;
+    if(instance == null)&#123;instance = new Bank();&#125;//为了防止创建多个对象，需要对对象进行判断，如果是已经创建了的对象那么比不可能为null，这样就不会再创建对象了
+    return instance
+&#125;
+</code></pre>
+}<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    两种写法的区别在于饿汉式是在方法外面创建对象，懒汉式是在方法内通过判断对象是否为null来创建对象，两者都只会产生一个对象</span><br><span class="line"></span><br><span class="line">    饿汉式是一上来就把对象给创建了（和类一起加载）</span><br><span class="line"></span><br><span class="line">    懒汉式是在调用的时候才会创建对象</span><br><span class="line"></span><br><span class="line">  - 区分饿汉式和懒汉式</span><br><span class="line"></span><br><span class="line">    饿汉式：坏处：加载时间过长</span><br><span class="line"></span><br><span class="line">    ​				好处：线程安全</span><br><span class="line">    </span><br><span class="line">    懒汉式：好处：延迟对象的创建</span><br><span class="line"></span><br><span class="line">​								坏处：线程不安全。解决方法是加synchronized或者增加延迟</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">单例模式减少系统性能开销（指的是指创建一个对象）</span><br><span class="line"></span><br><span class="line">## 类中代码块结构的使用</span><br><span class="line"></span><br><span class="line">类的成员包括属性、构造器、方法、内部类和代码块</span><br><span class="line"></span><br><span class="line">代码块或者可以叫初始化块</span><br><span class="line"></span><br><span class="line">- 代码块是用来初始化类或者是对象，所以叫初始化块</span><br><span class="line"></span><br><span class="line">- 代码块可以用static关键字修饰，其他的都不行</span><br><span class="line"></span><br><span class="line">- 静态代码块：</span><br><span class="line"></span><br><span class="line">  - 内部可以有输出语句，随着类的加载而加载执行，只执行一次</span><br><span class="line"></span><br><span class="line">  - 可以在类加载的时候初始化类的结构，比如说类中的static字段</span><br><span class="line">  - 类中的多个静态代码块执行顺序就是声明的先后顺序</span><br><span class="line">  - 静态代码块内只能调用静态结构，不能调用非静态结构</span><br><span class="line"></span><br><span class="line">- 非静态代码块：-</span><br><span class="line"></span><br><span class="line">  - 内部可以有输出语句，随着对象的创建而执行，每创建一个对象就执行一次</span><br><span class="line">  - 可以在创建对象的时候对对象的属性进行初始化</span><br><span class="line">  - 类中的多个非静态代码块执行顺序就是声明的先后顺序</span><br><span class="line">  - 内部静不静态都可以调用</span><br><span class="line"></span><br><span class="line">- 执行顺序：1.先父类静态代码块再子类静态代码块2.先执行代码块再执行构造器。由父及子，静态先行</span><br><span class="line"></span><br><span class="line">  ```java</span><br><span class="line">  class Order&#123;</span><br><span class="line">   int id = 3;</span><br><span class="line">   &#123;</span><br><span class="line">   id = 4;</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>这两种赋值方式的执行顺序是看哪一个写在前面哪个就先执行</p>
+</li>
+</ul>
+<p><em>今天先到322</em></p>
+<p>接下来写计算器</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/08/29/%E4%B9%9D%E6%9C%88%E4%BA%8C%E6%97%A5/" data-id="cl7llhl6t0000osvig0duea26" class="article-share-link">Share</a>
       
       
     </footer>
@@ -714,7 +782,11 @@
       <ul>
         
           <li>
-            <a href="/2022/09/01/%E4%B9%9D%E6%9C%88%E4%B8%80%E6%97%A5%E6%80%9D%E8%80%83/">(no title)</a>
+            <a href="/2022/09/01/%E4%B9%9D%E6%9C%88%E4%B8%80%E6%97%A5%E6%80%9D%E8%80%83/">九月一日检讨</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/29/%E4%B9%9D%E6%9C%88%E4%BA%8C%E6%97%A5/">(no title)</a>
           </li>
         
           <li>
@@ -727,10 +799,6 @@
         
           <li>
             <a href="/2022/08/22/(%E5%B0%9A%E7%A1%85%E8%B0%B7%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0)01/">(尚硅谷视频笔记)01</a>
-          </li>
-        
-          <li>
-            <a href="/2022/08/20/%E5%A4%8D%E4%B9%A0002/">复习002</a>
           </li>
         
       </ul>
