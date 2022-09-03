@@ -64,6 +64,58 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-九月三日" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/09/04/%E4%B9%9D%E6%9C%88%E4%B8%89%E6%97%A5/" class="article-date">
+  <time datetime="2022-09-03T16:03:04.729Z" itemprop="datePublished">2022-09-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/09/04/%E4%B9%9D%E6%9C%88%E4%B8%89%E6%97%A5/">2022.09.03</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="final"><a href="#final" class="headerlink" title="final"></a>final</h2><ul>
+<li>final可以修饰类：被final修饰的类无法被继承</li>
+<li>final修饰方法：被final修饰的方法无法被重写</li>
+<li>final修饰变量：被final修饰的变量成为常量<ul>
+<li>final修饰的属性可以进行显示初始化、代码块中初始化、构造器初始化</li>
+<li>final修饰局部变量（形参和方法内的属性）：使用final修饰形参时，表明形参是一个常量，调用时给这个方法一个实参，一旦调用以后就只能在方法体内使用这个形参而且不能重新赋值</li>
+</ul>
+</li>
+<li>static final修饰的属性是全局常量</li>
+</ul>
+<h3 id="抽象类的匿名子类"><a href="#抽象类的匿名子类" class="headerlink" title="抽象类的匿名子类"></a>抽象类的匿名子类</h3><p><img src="https://img-blog.csdnimg.cn/8a5c06ede863463cb9efc4ead3abcbec.png"></p>
+<p>这里Human本来是抽象类是不能进行创建对象的，但是可以创建匿名子类对象，后面的new Human()相当于使用多态的方式临时创建了一个子类，所以这需要把抽象方法重写，调用的时候用对象名调用即可，这个子类对象声明为Human。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">package testbag;</span><br><span class="line"></span><br><span class="line">public class Demo020 &#123;</span><br><span class="line">    public static void say(Human hhh)&#123;</span><br><span class="line">        hhh.drink();</span><br><span class="line">        hhh.eat();</span><br><span class="line">    &#125;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Student student = new Student();</span><br><span class="line"></span><br><span class="line">        //创建一个抽象类的匿名子类对象</span><br><span class="line">        Human human = new Human() &#123;//这是匿名子类，但是声明为父类</span><br><span class="line">            @Override</span><br><span class="line">            public void eat() &#123;</span><br><span class="line">                System.out.println(&quot;我就要吃我就要吃&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            @Override</span><br><span class="line">            public void drink() &#123;</span><br><span class="line">                System.out.println(&quot;我就是喝我就是喝&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        human.eat();//调用了匿名子类重写的方法</span><br><span class="line">        human.drink();//调用了匿名子类重写的方法</span><br><span class="line">        say(human);//因为human是声明为Human的子类对象，所以可以放在这里做参数（多态），调用的也是匿名子类重写的方法</span><br><span class="line">        say(student);//和上面一样，由于多态所以可以做参数，调用重写的方法</span><br><span class="line">    &#125;&#125;</span><br><span class="line">    say(new Human() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void eat() &#123;</span><br><span class="line">                System.out.println(&quot;我爱吃火鸡味道锅巴&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            @Override</span><br><span class="line">            public void drink() &#123;</span><br><span class="line">                System.out.println(&quot;我爱悦刻5&quot;);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);//也可以直接在方法里new一个对象作为参数然后重写方法</span><br><span class="line">abstract class Human&#123;</span><br><span class="line">    public abstract void eat();</span><br><span class="line">    public abstract void drink();</span><br><span class="line">&#125;</span><br><span class="line">class Student extends Human&#123;</span><br><span class="line">    public void eat()&#123;</span><br><span class="line">        System.out.println(&quot;吃吃吃就知道吃&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    public void drink()&#123;</span><br><span class="line">        System.out.println(&quot;喝喝喝就知道喝&quot;);</span><br><span class="line">    &#125;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>接口也是类似的操作。</p>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/04/%E4%B9%9D%E6%9C%88%E4%B8%89%E6%97%A5/" data-id="cl7m3l31l0000ncvi0ifb129w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-九月一日思考" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2022/09/01/%E4%B9%9D%E6%9C%88%E4%B8%80%E6%97%A5%E6%80%9D%E8%80%83/" class="article-date">
@@ -126,10 +178,19 @@
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/08/29/%E4%B9%9D%E6%9C%88%E4%BA%8C%E6%97%A5/">2022.09.02</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<h2 id="2022-09-02"><a href="#2022-09-02" class="headerlink" title="2022.09.02"></a>2022.09.02</h2><h2 id="单例设计模式"><a href="#单例设计模式" class="headerlink" title="单例设计模式"></a>单例设计模式</h2><ul>
+        <h3 id="单例设计模式"><a href="#单例设计模式" class="headerlink" title="单例设计模式"></a>单例设计模式</h3><ul>
 <li><p>设计模式：是一种代码结构，编程风格和思考模式》》》套路</p>
 </li>
 <li><p>单例的设计模式是指：采取一定的方法保证整个软件系统中只能存在一个对象实例，</p>
@@ -154,7 +215,7 @@ public static Order getInstance()&#123;
     return instance
 &#125;
 </code></pre>
-}<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    两种写法的区别在于饿汉式是在方法外面创建对象，懒汉式是在方法内通过判断对象是否为null来创建对象，两者都只会产生一个对象</span><br><span class="line"></span><br><span class="line">    饿汉式是一上来就把对象给创建了（和类一起加载）</span><br><span class="line"></span><br><span class="line">    懒汉式是在调用的时候才会创建对象</span><br><span class="line"></span><br><span class="line">  - 区分饿汉式和懒汉式</span><br><span class="line"></span><br><span class="line">    饿汉式：坏处：加载时间过长</span><br><span class="line"></span><br><span class="line">    ​				好处：线程安全</span><br><span class="line">    </span><br><span class="line">    懒汉式：好处：延迟对象的创建</span><br><span class="line"></span><br><span class="line">​								坏处：线程不安全。解决方法是加synchronized或者增加延迟</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">单例模式减少系统性能开销（指的是指创建一个对象）</span><br><span class="line"></span><br><span class="line">## 类中代码块结构的使用</span><br><span class="line"></span><br><span class="line">类的成员包括属性、构造器、方法、内部类和代码块</span><br><span class="line"></span><br><span class="line">代码块或者可以叫初始化块</span><br><span class="line"></span><br><span class="line">- 代码块是用来初始化类或者是对象，所以叫初始化块</span><br><span class="line"></span><br><span class="line">- 代码块可以用static关键字修饰，其他的都不行</span><br><span class="line"></span><br><span class="line">- 静态代码块：</span><br><span class="line"></span><br><span class="line">  - 内部可以有输出语句，随着类的加载而加载执行，只执行一次</span><br><span class="line"></span><br><span class="line">  - 可以在类加载的时候初始化类的结构，比如说类中的static字段</span><br><span class="line">  - 类中的多个静态代码块执行顺序就是声明的先后顺序</span><br><span class="line">  - 静态代码块内只能调用静态结构，不能调用非静态结构</span><br><span class="line"></span><br><span class="line">- 非静态代码块：-</span><br><span class="line"></span><br><span class="line">  - 内部可以有输出语句，随着对象的创建而执行，每创建一个对象就执行一次</span><br><span class="line">  - 可以在创建对象的时候对对象的属性进行初始化</span><br><span class="line">  - 类中的多个非静态代码块执行顺序就是声明的先后顺序</span><br><span class="line">  - 内部静不静态都可以调用</span><br><span class="line"></span><br><span class="line">- 执行顺序：1.先父类静态代码块再子类静态代码块2.先执行代码块再执行构造器。由父及子，静态先行</span><br><span class="line"></span><br><span class="line">  ```java</span><br><span class="line">  class Order&#123;</span><br><span class="line">   int id = 3;</span><br><span class="line">   &#123;</span><br><span class="line">   id = 4;</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
+}<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    两种写法的区别在于饿汉式是在方法外面创建对象，懒汉式是在方法内通过判断对象是否为null来创建对象，两者都只会产生一个对象</span><br><span class="line"></span><br><span class="line">    饿汉式是一上来就把对象给创建了（和类一起加载）</span><br><span class="line"></span><br><span class="line">    懒汉式是在调用的时候才会创建对象</span><br><span class="line"></span><br><span class="line">  - 区分饿汉式和懒汉式</span><br><span class="line"></span><br><span class="line">    饿汉式：坏处：加载时间过长</span><br><span class="line"></span><br><span class="line">    ​				好处：线程安全</span><br><span class="line">    </span><br><span class="line">    懒汉式：好处：延迟对象的创建</span><br><span class="line"></span><br><span class="line">​								坏处：线程不安全。解决方法是加synchronized或者增加延迟</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">单例模式减少系统性能开销（指的是指创建一个对象）</span><br><span class="line"></span><br><span class="line">### 类中代码块结构的使用</span><br><span class="line"></span><br><span class="line">类的成员包括属性、构造器、方法、内部类和代码块</span><br><span class="line"></span><br><span class="line">代码块或者可以叫初始化块</span><br><span class="line"></span><br><span class="line">- 代码块是用来初始化类或者是对象，所以叫初始化块</span><br><span class="line"></span><br><span class="line">- 代码块可以用static关键字修饰，其他的都不行</span><br><span class="line"></span><br><span class="line">- 静态代码块：</span><br><span class="line"></span><br><span class="line">  - 内部可以有输出语句，随着类的加载而加载执行，只执行一次</span><br><span class="line"></span><br><span class="line">  - 可以在类加载的时候初始化类的结构，比如说类中的static字段</span><br><span class="line">  - 类中的多个静态代码块执行顺序就是声明的先后顺序</span><br><span class="line">  - 静态代码块内只能调用静态结构，不能调用非静态结构</span><br><span class="line"></span><br><span class="line">- 非静态代码块：-</span><br><span class="line"></span><br><span class="line">  - 内部可以有输出语句，随着对象的创建而执行，每创建一个对象就执行一次</span><br><span class="line">  - 可以在创建对象的时候对对象的属性进行初始化</span><br><span class="line">  - 类中的多个非静态代码块执行顺序就是声明的先后顺序</span><br><span class="line">  - 内部静不静态都可以调用</span><br><span class="line"></span><br><span class="line">- 执行顺序：1.先父类静态代码块再子类静态代码块2.先执行代码块再执行构造器。由父及子，静态先行</span><br><span class="line"></span><br><span class="line">  ```java</span><br><span class="line">  class Order&#123;</span><br><span class="line">   int id = 3;</span><br><span class="line">   &#123;</span><br><span class="line">   id = 4;</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <p>这两种赋值方式的执行顺序是看哪一个写在前面哪个就先执行</p>
 </li>
@@ -782,11 +843,15 @@ public static Order getInstance()&#123;
       <ul>
         
           <li>
+            <a href="/2022/09/04/%E4%B9%9D%E6%9C%88%E4%B8%89%E6%97%A5/">2022.09.03</a>
+          </li>
+        
+          <li>
             <a href="/2022/09/01/%E4%B9%9D%E6%9C%88%E4%B8%80%E6%97%A5%E6%80%9D%E8%80%83/">九月一日检讨</a>
           </li>
         
           <li>
-            <a href="/2022/08/29/%E4%B9%9D%E6%9C%88%E4%BA%8C%E6%97%A5/">(no title)</a>
+            <a href="/2022/08/29/%E4%B9%9D%E6%9C%88%E4%BA%8C%E6%97%A5/">2022.09.02</a>
           </li>
         
           <li>
@@ -795,10 +860,6 @@ public static Order getInstance()&#123;
         
           <li>
             <a href="/2022/08/23/(%E5%B0%9A%E7%A1%85%E8%B0%B7%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0)02/">(尚硅谷视频笔记)02</a>
-          </li>
-        
-          <li>
-            <a href="/2022/08/22/(%E5%B0%9A%E7%A1%85%E8%B0%B7%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0)01/">(尚硅谷视频笔记)01</a>
           </li>
         
       </ul>
